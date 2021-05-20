@@ -4,12 +4,12 @@ const morgan = require ('morgan');
 const bodyParser = require ('body-parser');
 const mongoose = require('mongoose');
 
-//require('dotenv').config({path: __dirname + '/.env'});
+require('dotenv').config({path:__dirname+'/.env'})
 
 
 const UserRoutes = require('./api/routes/user');
-
-mongoose.connect('mongodb://bauproje:bahcesehir3434i@cluster0-shard-00-00.ed8qj.mongodb.net:27017,cluster0-shard-00-01.ed8qj.mongodb.net:27017,cluster0-shard-00-02.ed8qj.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-a6f8vz-shard-0&authSource=admin&retryWrites=true&w=majority',{
+const LectureRoutes = require('./api/routes/lecture')
+mongoose.connect(process.env.MONGO_ACCESS,{
     useNewUrlParser: true ,useUnifiedTopology: true ,useCreateIndex :true
 }).then(() => console.log('Auth-Mongo DB connection is Done...'))
 .catch(err =>console.log(err)); 
@@ -36,6 +36,7 @@ app.use((req,res,next) => {
 
 
 app.use('/user', UserRoutes);
+app.use('/lecture', LectureRoutes);
 
 app.use((req,res,next) => {
     const error = new Error ('Not Found');

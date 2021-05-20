@@ -1,16 +1,14 @@
-
-//const mongoose = require('mongoose');
-//const jwt = require ('jsonwebtoken');
+const User = require('../models/user');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require ('jsonwebtoken');
 
 
 exports.userLogout = async (req,res,next) => {
     res.status(200).json({message : "aslkasdjdalsd"})
 }
 
-const User = require('../models/user');
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require ('jsonwebtoken');
+
 
 
 exports.userCreate = (req,res,next) => {
@@ -27,10 +25,12 @@ exports.userCreate = (req,res,next) => {
                         error: err
                     });
                 }else{
+                    const displayname = req.body.displayname
                     const user = new User({
                         _id : new mongoose.Types.ObjectId(),
                         email : req.body.email,
-                        password : hash
+                        password : hash,
+                        displayName : displayname
                     });
                     user.save().then(result=>{
                         console.log("User Created Succesfully")
