@@ -8,7 +8,7 @@ const LectureController = require('../controllers/lecture');
 
 router.post('/create', LectureController.create);
 router.get('/get_all', LectureController.getAll);
-
+router.get('/:id', LectureController.getSingle);
 
 router.post('/add_comment', LectureController.addComment);
 
