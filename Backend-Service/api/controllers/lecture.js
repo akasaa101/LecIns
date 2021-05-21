@@ -1,4 +1,6 @@
 const Lecture = require('../models/lecture');
+const jwt = require('jsonwebtoken');
+
 const mongoose = require('mongoose');
 
 exports.getAll = (req,res,next) => {
@@ -14,6 +16,9 @@ exports.create = (req,res,next) => {
       name : req.body.name,
       shortDescription : req.body.shortDescription,
       description: req.body.description,
+      credit : req.body.credit,
+      akts : req.body.akts,
+      semester : req.body.semester
   });
   newLecture.save().then(result =>{
       console.log("Lecture create succesfully");
@@ -44,13 +49,15 @@ exports.getSingle = (req,res,next) => {
 
 exports.addComment = (req,res,next) => {
     const lectureID = req.body.lectureID
-    const userID = req.body.userID;
     const score = req.body.score 
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.JWT_KEY);
+    console.log(decoded)
     if(score >=0 && score<= 5){
         const newComment = {
             _id : new mongoose.Types.ObjectId(),
             isAnon : req.body.isAnon,
-            userID: userID,
+            user: decoded.displayname,
             comment : req.body.comment,
             score : req.body.score
         };

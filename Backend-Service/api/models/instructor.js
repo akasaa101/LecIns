@@ -1,21 +1,12 @@
 const mongoose = require('mongoose');
 
-const lectureSchema = mongoose.Schema({
-    id : {type : String, required : true, unique : true},
+const instructorSchema = mongoose.Schema({
+    _id : mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true, unique: true},
-    shortDescription: { type: String, required : true},
     description : {type:String, required : true},
     rating : {type :Number, default : 0 },
     commentCount : {type : Number, required : true, default : 0},
-    credit : {type : Number, required : false },
-    akts : {type : Number, required : false},
-    semester : {type : String, required : false},
-    instructors: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Instructor"
-        }
-      ],
+    lectures : [{ type: Schema.Types.ObjectId, ref: 'Lecture' }],
     comments : [{
         _id : {type : mongoose.Schema.Types.ObjectId},
         isAnon :{type : Boolean, required : true, default : false},
@@ -25,4 +16,4 @@ const lectureSchema = mongoose.Schema({
     }]
 });
 
-module.exports = mongoose.model('Lecture', lectureSchema);
+module.exports = mongoose.model('Instructor', instructorSchema);
