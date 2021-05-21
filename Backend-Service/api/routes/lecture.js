@@ -9,4 +9,7 @@ const LectureController = require('../controllers/lecture');
 router.post('/create', LectureController.create);
 router.get('/get_all', LectureController.getAll);
 
+
+router.post('/add_comment', LectureController.addComment);
+
 module.exports= router;
