@@ -5,7 +5,7 @@ const lectureSchema = mongoose.Schema({
     name: { type: String, required: true, unique: true},
     shortDescription: { type: String, required : true},
     description : {type:String, required : true},
-    rating : {type :Number }
+    rating : {type :Number, default : 0 }
 });
 
 module.exports = mongoose.model('Lecture', lectureSchema);
