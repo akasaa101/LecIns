@@ -9,6 +9,8 @@ require('dotenv').config({path:__dirname+'/.env'})
 
 const UserRoutes = require('./api/routes/user');
 const LectureRoutes = require('./api/routes/lecture')
+const InstructorRoutes = require('./api/routes/instructor')
+
 mongoose.connect(process.env.MONGO_ACCESS,{
     useNewUrlParser: true ,useUnifiedTopology: true ,useCreateIndex :true
 }).then(() => console.log('Auth-Mongo DB connection is Done...'))
@@ -37,6 +39,7 @@ app.use((req,res,next) => {
 
 app.use('/user', UserRoutes);
 app.use('/lecture', LectureRoutes);
+app.use('/instructor' , InstructorRoutes);
 
 app.use((req,res,next) => {
     const error = new Error ('Not Found');

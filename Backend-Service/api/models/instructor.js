@@ -6,7 +6,12 @@ const instructorSchema = mongoose.Schema({
     description : {type:String, required : true},
     rating : {type :Number, default : 0 },
     commentCount : {type : Number, required : true, default : 0},
-    lectures : [{ type: Schema.Types.ObjectId, ref: 'Lecture' }],
+    lectures: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Lecture"
+        }
+      ],    
     comments : [{
         _id : {type : mongoose.Schema.Types.ObjectId},
         isAnon :{type : Boolean, required : true, default : false},
