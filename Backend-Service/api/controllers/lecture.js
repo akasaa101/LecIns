@@ -62,9 +62,7 @@ exports.addComment = (req,res,next) => {
                      console.log(error);
                      res.status(500).json({error:error})
                  } else {
-                     const newCount = success.commentCount + 1
-                     const newScore = success.rating + req.body.score
-      
+                     const newCount = success.commentCount + 1      
                      const newRating = ((success.commentCount * success.rating) + req.body.score)/newCount
                      const update = { rating: newRating, commentCount : newCount };
                      Lecture.findOneAndUpdate({id : lectureID}, update, {new : true}).exec().then(doc=>{
