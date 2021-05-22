@@ -1,0 +1,9 @@
+.card-container {
+  width: 80%;
+  margin-top: 10px;
+}
+
+.card-container:hover {
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,23 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+
+  .title {
+    color: black;
+    margin: 10px 0;
+  }
+
+  .subtitle {
+    color: black;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 90vw;
+  }
+}

@@ -1,0 +1,23 @@
+.sign-in {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    color: black;
+    margin: 10px 0;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .subtitle {
+    color: black;
+  }
+
+  @media screen and (max-width: 800px) {
+      width: 90vw;
+  }
+}
