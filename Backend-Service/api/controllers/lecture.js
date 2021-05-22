@@ -90,3 +90,23 @@ exports.addComment = (req,res,next) => {
     
 
 }
+
+
+exports.addInstructorToLecture = async (req,res,next) => {
+    const id = req.params.id;
+    const addNewInstructor= {
+        name : req.body.name,
+    };
+
+        Lecture.findOneAndUpdate(
+        {_id : id }, 
+        { $push: { instructors: addNewInstructor } }, {new : true},
+       function (error, success) {
+             if (error) {
+                 console.log(error);
+                 res.status(500).json({error:error})
+             } else {
+                res.status(200).json({success})
+             }
+         }); 
+}

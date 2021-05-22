@@ -10,12 +10,9 @@ const lectureSchema = mongoose.Schema({
     credit : {type : Number, required : false },
     akts : {type : Number, required : false},
     semester : {type : String, required : false},
-    instructors: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Instructor"
-        }
-      ],
+    instructors : [{
+      name :{type : String, required : true},
+  }],
     comments : [{
         _id : {type : mongoose.Schema.Types.ObjectId},
         isAnon :{type : Boolean, required : true, default : false},

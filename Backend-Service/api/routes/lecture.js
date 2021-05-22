@@ -11,5 +11,6 @@ router.get('/get_all', LectureController.getAll);
 router.get('/:id', LectureController.getSingle);
 
 router.post('/add_comment', LectureController.addComment);
+router.post('/:id/add_instructor', LectureController.addInstructorToLecture)
 
 module.exports= router;

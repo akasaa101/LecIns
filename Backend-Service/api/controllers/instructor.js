@@ -89,11 +89,24 @@ exports.addComment = (req,res,next) => {
 }
 
 exports.addLecturetoInstructor = async (req,res,next) => {
-    const id = req.params.id
-    const lectureID = req.params.lectureID
+        const id = req.params.id;
+        const addNewLecture= {
+            lectureID : req.body.lectureID,
+            lectureName : req.body.lectureName,
+        };
+        console.log(addNewLecture)
+            Instructor.findOneAndUpdate(
+            {_id : id }, 
+            { $push: { lectures: addNewLecture } }, {new : true},
+           function (error, success) {
+                 if (error) {
+                     console.log(error);
+                     res.status(500).json({error:error})
+                 } else {
+                    res.status(200).json({success})
+                 }
+             }); 
+    }
+   
+   
 
-    Instructor.findOneAndUpdate(
-        { _id: id }, 
-        { $push: { lectures: lectureID } }
-    );
- }  
