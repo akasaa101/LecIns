@@ -11,6 +11,13 @@ exports.getAll = (req,res,next) => {
   })
 }
 
+exports.getByName = (req,res,next) => {
+    const name = req.body.name
+    Instructor.findOne({name : name}).exec().then(doc => {res.status(200).json({doc})})
+    .catch(err => {res.status(500).json({message : "Fail", description : err})})
+}
+
+
 exports.create = (req,res,next) => {
    const newInstructor = new Instructor({
       _id : new mongoose.Types.ObjectId(),
