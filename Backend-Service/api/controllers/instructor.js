@@ -12,6 +12,9 @@ exports.getAll = (req,res,next) => {
 }
 
 exports.getByName = (req,res,next) => {
+    console.log("---------")
+    console.log(req.body)
+    console.log("----------")
     const name = req.body.name
     Instructor.findOne({name : name}).exec().then(doc => {res.status(200).json({doc})})
     .catch(err => {res.status(500).json({message : "Fail", description : err})})

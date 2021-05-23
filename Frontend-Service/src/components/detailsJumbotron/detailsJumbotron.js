@@ -10,7 +10,7 @@ const DetailsJumbotron = ({ lectureId, rating, shortDesc, name }) => {
     <div className="details-jumbotron-container">
       <Jumbotron style={{ width: "100vw" }}>
         <h1>
-          {name} - {rating} <Star color="black" fill="yellow" size={26} />
+          {name} - {rating.toFixed(2)} <Star color="black" fill="yellow" size={26} />
         </h1>
         <p>{shortDesc}</p>
         <p>

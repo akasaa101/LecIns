@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import "./DetailsPage.css";
 
@@ -12,6 +12,7 @@ import { selectCurrentUser } from "../../redux/selectors/authSelector";
 import axios from "axios";
 
 const DetailsPage = () => {
+  const location = useLocation();
   const cuurentUser = useSelector(selectCurrentUser);
   let { lectureId } = useParams();
 
@@ -55,7 +56,10 @@ const DetailsPage = () => {
                     color: "#67a0e0",
                     cursor: "pointer",
                   }}
-                  to={`/teachers/${cur._id}`}
+                  to={{
+                    pathname: `/teachers/${cur.name}`,
+                    state: { prevPath: location.pathname, name: cur.name },
+                  }}
                 >
                   {cur.name},{" "}
                 </Link>

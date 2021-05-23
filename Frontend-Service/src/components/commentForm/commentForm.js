@@ -34,7 +34,7 @@ const CommentForm = ({ pageId, commentForTeacher }) => {
           {
             isAnon: checked,
             comment,
-            score: radioValue,
+            score: parseInt(radioValue),
           }
         );
         console.log(res);
@@ -50,7 +50,7 @@ const CommentForm = ({ pageId, commentForTeacher }) => {
             lectureID: pageId,
             isAnon: checked,
             comment,
-            score: radioValue,
+            score: parseInt(radioValue),
           }
         );
         console.log(res);

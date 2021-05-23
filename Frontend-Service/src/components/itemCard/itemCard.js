@@ -21,7 +21,7 @@ const ItemCard = ({ title, lectureId, description, rating, onClick }) => {
           <blockquote className="blockquote mb-0">
             <p> {description} </p>
             <footer className="blockquote-footer" style={{color: hover ? 'white' : 'black'}}>
-              Rating: {rating} <Star color="black" fill="yellow" size={20} />
+              Rating: {rating.toFixed(2)} <Star color="black" fill="yellow" size={20} />
             </footer>
           </blockquote>
         </Card.Body>

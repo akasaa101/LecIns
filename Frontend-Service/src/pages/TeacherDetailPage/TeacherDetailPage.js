@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 import "./TeacherDetailPage.css";
 
@@ -12,18 +12,34 @@ import { selectCurrentUser } from "../../redux/selectors/authSelector";
 import axios from "axios";
 
 const TeacherDetailPage = () => {
+  const location = useLocation();
   const cuurentUser = useSelector(selectCurrentUser);
   let { teacherId } = useParams();
 
   const [teacherInfo, setTeacherInfo] = useState(null);
 
   useEffect(() => {
+    //console.log(teacherId);
     const fetchLecture = async () => {
-      const res = await axios.get(
-        `http://localhost:3000/instructor/${teacherId}`
-      );
-      console.log(res);
-      setTeacherInfo(res.data.doc);
+      if (location.state) {
+
+
+        const res = await axios.post(
+          "http://localhost:3000/instructor/get_by_name",
+          {
+            name: location.state.name
+          }
+        );
+          
+        console.log(res);
+        setTeacherInfo(res.data.doc);
+      } else {
+        const res = await axios.get(
+          `http://localhost:3000/instructor/${teacherId}`
+        );
+        console.log(res);
+        setTeacherInfo(res.data.doc);
+      }
     };
 
     fetchLecture();
